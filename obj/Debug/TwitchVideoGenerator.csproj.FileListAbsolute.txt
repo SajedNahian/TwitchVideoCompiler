@@ -1,0 +1,12 @@
+C:\Users\Sajed\source\repos\TwitchVideoGenerator\TwitchVideoGenerator\bin\Debug\TwitchVideoGenerator.exe.config
+C:\Users\Sajed\source\repos\TwitchVideoGenerator\TwitchVideoGenerator\bin\Debug\TwitchVideoGenerator.exe
+C:\Users\Sajed\source\repos\TwitchVideoGenerator\TwitchVideoGenerator\bin\Debug\TwitchVideoGenerator.pdb
+C:\Users\Sajed\source\repos\TwitchVideoGenerator\TwitchVideoGenerator\obj\Debug\TwitchVideoGenerator.csprojAssemblyReference.cache
+C:\Users\Sajed\source\repos\TwitchVideoGenerator\TwitchVideoGenerator\obj\Debug\TwitchVideoGenerator.Form1.resources
+C:\Users\Sajed\source\repos\TwitchVideoGenerator\TwitchVideoGenerator\obj\Debug\TwitchVideoGenerator.Properties.Resources.resources
+C:\Users\Sajed\source\repos\TwitchVideoGenerator\TwitchVideoGenerator\obj\Debug\TwitchVideoGenerator.csproj.GenerateResource.cache
+C:\Users\Sajed\source\repos\TwitchVideoGenerator\TwitchVideoGenerator\obj\Debug\TwitchVideoGenerator.csproj.CoreCompileInputs.cache
+C:\Users\Sajed\source\repos\TwitchVideoGenerator\TwitchVideoGenerator\obj\Debug\TwitchVideoGenerator.exe
+C:\Users\Sajed\source\repos\TwitchVideoGenerator\TwitchVideoGenerator\obj\Debug\TwitchVideoGenerator.pdb
+C:\Users\Sajed\source\repos\TwitchVideoGenerator\TwitchVideoGenerator\bin\Debug\NReco.VideoConverter.dll
+C:\Users\Sajed\source\repos\TwitchVideoGenerator\TwitchVideoGenerator\obj\Debug\TwitchVideoGenerator.csproj.CopyComplete
