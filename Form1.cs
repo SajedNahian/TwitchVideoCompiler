@@ -31,12 +31,21 @@ namespace TwitchVideoGenerator
 
         private void aGenerateVideoButton_Click(object sender, EventArgs e)
         {
+            aErrorText.Text = "";
             var videoInput = aVideoURLs.Text.TrimEnd('\r', '\n');
             var videoURLs = videoInput.Split('\n');
             aProgressBar.Visible = true;
             aProgressBar.Style = ProgressBarStyle.Marquee;
             aProgressBar.MarqueeAnimationSpeed = 30;
             var videoNum = 1;
+            var videosFolderPath = Application.StartupPath + @"\Videos";
+
+
+            if (!Directory.Exists(videosFolderPath))
+            {
+                Directory.CreateDirectory(videosFolderPath);
+            }
+
             Thread thread = new Thread(() =>
             {
                 var videos = new string[videoURLs.Length];
@@ -44,15 +53,36 @@ namespace TwitchVideoGenerator
                 {
                     using (WebClient client = new WebClient())
                     {
-                        client.DownloadFile(new Uri(video), Application.StartupPath + @"\video" + videoNum + ".mp4");
-                        videos[videoNum - 1] = Application.StartupPath + @"\video" + videoNum + ".mp4";
+                        try
+                        {
+                            client.DownloadFile(new Uri(video), videosFolderPath + @"\video" + videoNum + ".mp4");
+                        }
+                        catch
+                        {
+                            aProgressBar.Visible = false;
+                            aErrorText.Text = "Error: Invalid Twitch Clip Links";
+                            return;
+                        }
+
+                        videos[videoNum - 1] = videosFolderPath + @"\video" + videoNum + ".mp4";
                         videoNum++;
                     }
                 }
 
                 if (aCompileVideos.Checked)
                 {
-                    var outputLocation = Application.StartupPath + @"\compiledVideo.mp4";
+                    var validFileName = !string.IsNullOrEmpty(aFileName.Text) &&
+                                        aFileName.Text.IndexOfAny(Path.GetInvalidFileNameChars()) < 0;
+
+                    if (!validFileName)
+                    {
+                        aProgressBar.Visible = false;
+                        aErrorText.Text = "Error: Invalid File Name";
+                        return;
+                    }
+
+                    var outputLocation = videosFolderPath + @"\" + aFileName.Text + ".mp4";
+
                     var ffMpeg = new FFMpegConverter();
 
                     var set = new ConcatSettings();
@@ -60,7 +90,16 @@ namespace TwitchVideoGenerator
                     set.ConcatAudioStream = true;
                     set.SetVideoFrameSize(Convert.ToInt32(aXResolution.Text), Convert.ToInt32(aYResolution.Text));
 
-                    ffMpeg.ConcatMedia(videos, outputLocation, Format.mp4, set);
+                    try
+                    {
+                        ffMpeg.ConcatMedia(videos, outputLocation, Format.mp4, set);
+                    }
+                    catch (Exception)
+                    {
+                        aProgressBar.Visible = false;
+                        aErrorText.Text = "Error: Invalid Resolution or Invalid Twitch Clip URLs";
+                        return;
+                    }
 
                     if (aDeleteClipsAfterwards.Visible && aDeleteClipsAfterwards.Checked)
                     {
@@ -84,18 +123,24 @@ namespace TwitchVideoGenerator
         {
             if (aCompileVideos.Checked)
             {
-                aDeleteClipsAfterwards.Visible = true;
+                ShowCompileVideoOptions(true);
             }
             else
-            {
-                if (aDeleteClipsAfterwards.Visible)
-                {
-                    if (aDeleteClipsAfterwards.Checked)
-                        aDeleteClipsAfterwards.Checked = false;
-                    
-                    aDeleteClipsAfterwards.Visible = false;
-                }
+            {   
+                ShowCompileVideoOptions(false);
             }
+        }
+
+        private void ShowCompileVideoOptions(bool show)
+        {
+            aDeleteClipsAfterwards.Visible = show;
+            aFileName.Visible = show;
+            aSaveAsLabel.Visible = show;
+            aMP4.Visible = show;
+            aResolutionLabel.Visible = show;
+            aByLabel.Visible = show;
+            aXResolution.Visible = show;
+            aYResolution.Visible = show;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

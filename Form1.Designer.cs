@@ -35,11 +35,15 @@
             this.aProgressBar = new System.Windows.Forms.ProgressBar();
             this.aCompileVideos = new System.Windows.Forms.CheckBox();
             this.aDeleteClipsAfterwards = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.aResolutionLabel = new System.Windows.Forms.Label();
             this.aXResolution = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.aByLabel = new System.Windows.Forms.Label();
             this.aYResolution = new System.Windows.Forms.TextBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.aFileName = new System.Windows.Forms.TextBox();
+            this.aSaveAsLabel = new System.Windows.Forms.Label();
+            this.aMP4 = new System.Windows.Forms.Label();
+            this.aErrorText = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // aVideoURLs
@@ -85,7 +89,7 @@
             // aCompileVideos
             // 
             this.aCompileVideos.AutoSize = true;
-            this.aCompileVideos.Location = new System.Drawing.Point(382, 29);
+            this.aCompileVideos.Location = new System.Drawing.Point(379, 29);
             this.aCompileVideos.Name = "aCompileVideos";
             this.aCompileVideos.Size = new System.Drawing.Size(142, 17);
             this.aCompileVideos.TabIndex = 4;
@@ -96,7 +100,7 @@
             // aDeleteClipsAfterwards
             // 
             this.aDeleteClipsAfterwards.AutoSize = true;
-            this.aDeleteClipsAfterwards.Location = new System.Drawing.Point(382, 53);
+            this.aDeleteClipsAfterwards.Location = new System.Drawing.Point(379, 99);
             this.aDeleteClipsAfterwards.Name = "aDeleteClipsAfterwards";
             this.aDeleteClipsAfterwards.Size = new System.Drawing.Size(135, 17);
             this.aDeleteClipsAfterwards.TabIndex = 5;
@@ -104,39 +108,43 @@
             this.aDeleteClipsAfterwards.UseVisualStyleBackColor = true;
             this.aDeleteClipsAfterwards.Visible = false;
             // 
-            // label2
+            // aResolutionLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(382, 77);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Resolution:";
+            this.aResolutionLabel.AutoSize = true;
+            this.aResolutionLabel.Location = new System.Drawing.Point(379, 137);
+            this.aResolutionLabel.Name = "aResolutionLabel";
+            this.aResolutionLabel.Size = new System.Drawing.Size(60, 13);
+            this.aResolutionLabel.TabIndex = 6;
+            this.aResolutionLabel.Text = "Resolution:";
+            this.aResolutionLabel.Visible = false;
             // 
             // aXResolution
             // 
-            this.aXResolution.Location = new System.Drawing.Point(382, 96);
+            this.aXResolution.Location = new System.Drawing.Point(379, 156);
             this.aXResolution.Name = "aXResolution";
             this.aXResolution.Size = new System.Drawing.Size(57, 20);
             this.aXResolution.TabIndex = 7;
             this.aXResolution.Text = "1920";
+            this.aXResolution.Visible = false;
             // 
-            // label3
+            // aByLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(445, 99);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(12, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "x";
+            this.aByLabel.AutoSize = true;
+            this.aByLabel.Location = new System.Drawing.Point(442, 159);
+            this.aByLabel.Name = "aByLabel";
+            this.aByLabel.Size = new System.Drawing.Size(12, 13);
+            this.aByLabel.TabIndex = 8;
+            this.aByLabel.Text = "x";
+            this.aByLabel.Visible = false;
             // 
             // aYResolution
             // 
-            this.aYResolution.Location = new System.Drawing.Point(460, 96);
+            this.aYResolution.Location = new System.Drawing.Point(457, 156);
             this.aYResolution.Name = "aYResolution";
             this.aYResolution.Size = new System.Drawing.Size(57, 20);
             this.aYResolution.TabIndex = 9;
             this.aYResolution.Text = "1080";
+            this.aYResolution.Visible = false;
             // 
             // linkLabel1
             // 
@@ -149,16 +157,59 @@
             this.linkLabel1.Text = "How?";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // aFileName
+            // 
+            this.aFileName.Location = new System.Drawing.Point(379, 73);
+            this.aFileName.Name = "aFileName";
+            this.aFileName.Size = new System.Drawing.Size(117, 20);
+            this.aFileName.TabIndex = 11;
+            this.aFileName.Visible = false;
+            // 
+            // aSaveAsLabel
+            // 
+            this.aSaveAsLabel.AutoSize = true;
+            this.aSaveAsLabel.Location = new System.Drawing.Point(379, 53);
+            this.aSaveAsLabel.Name = "aSaveAsLabel";
+            this.aSaveAsLabel.Size = new System.Drawing.Size(49, 13);
+            this.aSaveAsLabel.TabIndex = 12;
+            this.aSaveAsLabel.Text = "Save as:";
+            this.aSaveAsLabel.Visible = false;
+            // 
+            // aMP4
+            // 
+            this.aMP4.AutoSize = true;
+            this.aMP4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aMP4.Location = new System.Drawing.Point(502, 76);
+            this.aMP4.Name = "aMP4";
+            this.aMP4.Size = new System.Drawing.Size(30, 13);
+            this.aMP4.TabIndex = 13;
+            this.aMP4.Text = ".mp4";
+            this.aMP4.Visible = false;
+            // 
+            // aErrorText
+            // 
+            this.aErrorText.AutoSize = true;
+            this.aErrorText.ForeColor = System.Drawing.Color.Red;
+            this.aErrorText.Location = new System.Drawing.Point(141, 287);
+            this.aErrorText.Name = "aErrorText";
+            this.aErrorText.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.aErrorText.Size = new System.Drawing.Size(0, 13);
+            this.aErrorText.TabIndex = 14;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(603, 322);
+            this.Controls.Add(this.aErrorText);
+            this.Controls.Add(this.aMP4);
+            this.Controls.Add(this.aSaveAsLabel);
+            this.Controls.Add(this.aFileName);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.aYResolution);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.aByLabel);
             this.Controls.Add(this.aXResolution);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.aResolutionLabel);
             this.Controls.Add(this.aDeleteClipsAfterwards);
             this.Controls.Add(this.aCompileVideos);
             this.Controls.Add(this.aProgressBar);
@@ -183,11 +234,15 @@
         private System.Windows.Forms.ProgressBar aProgressBar;
         private System.Windows.Forms.CheckBox aCompileVideos;
         private System.Windows.Forms.CheckBox aDeleteClipsAfterwards;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label aResolutionLabel;
         private System.Windows.Forms.TextBox aXResolution;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label aByLabel;
         private System.Windows.Forms.TextBox aYResolution;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.TextBox aFileName;
+        private System.Windows.Forms.Label aSaveAsLabel;
+        private System.Windows.Forms.Label aMP4;
+        private System.Windows.Forms.Label aErrorText;
     }
 }
 
