@@ -82,7 +82,16 @@ namespace TwitchVideoGenerator
                     var set = new ConcatSettings();
                     set.ConcatVideoStream = true;
                     set.ConcatAudioStream = true;
-                    set.SetVideoFrameSize(Convert.ToInt32(aXResolution.Text), Convert.ToInt32(aYResolution.Text));
+                    try
+                    {
+                        set.SetVideoFrameSize(Convert.ToInt32(aXResolution.Text), Convert.ToInt32(aYResolution.Text));
+                    }
+                    catch
+                    {
+                        aProgressBar.Visible = false;
+                        aErrorText.Text = "Error: Invalid Resolution";
+                        return;
+                    }
 
                     var videosDuplicate = videos;
                     if (aAddIntro.Checked)
