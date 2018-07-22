@@ -187,9 +187,7 @@ namespace TwitchVideoGenerator
                 if (result == DialogResult.Cancel)
                 {
                     aAddIntro.Checked = false;
-                }
-
-                if (!openFileDialog1.FileName.EndsWith(".mp4"))
+                } else if (!openFileDialog1.FileName.EndsWith(".mp4"))
                 {
                     aErrorText.Text = "Error: Intro File must be in mp4 format";
                     aAddIntro.Checked = false;
@@ -205,9 +203,7 @@ namespace TwitchVideoGenerator
                 if (result == DialogResult.Cancel)
                 {
                     aAddOutro.Checked = false;
-                }
-
-                if (!openFileDialog2.FileName.EndsWith(".mp4"))
+                } else if (!openFileDialog2.FileName.EndsWith(".mp4"))
                 {
                     aErrorText.Text = "Error: Outro File must be in mp4 format";
                     aAddOutro.Checked = false;

@@ -212,10 +212,6 @@
             this.aAddIntro.Visible = false;
             this.aAddIntro.CheckedChanged += new System.EventHandler(this.aAddIntro_CheckedChanged);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // aAddOutro
             // 
             this.aAddOutro.AutoSize = true;
@@ -227,10 +223,6 @@
             this.aAddOutro.UseVisualStyleBackColor = true;
             this.aAddOutro.Visible = false;
             this.aAddOutro.CheckedChanged += new System.EventHandler(this.aAddOutro_CheckedChanged);
-            // 
-            // openFileDialog2
-            // 
-            this.openFileDialog2.FileName = "openFileDialog2";
             // 
             // Form1
             // 
