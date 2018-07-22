@@ -23,12 +23,6 @@ namespace TwitchVideoGenerator
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
- 
-
         private void aGenerateVideoButton_Click(object sender, EventArgs e)
         {
             aErrorText.Text = "";
@@ -125,7 +119,7 @@ namespace TwitchVideoGenerator
                         aProgressBar.Visible = false;
                         if (aAddIntro.Checked)
                         {
-                            aErrorText.Text = "Error: Invalid Resolution or Invalid Twitch Clip URLs or Invalid Intro Resolution";
+                            aErrorText.Text = "Error: Invalid Resolution or Invalid Twitch Clip URLs or Invalid Intro/Outro Resolution";
                         }
                         else
                         {
@@ -215,7 +209,7 @@ namespace TwitchVideoGenerator
 
                 if (!openFileDialog2.FileName.EndsWith(".mp4"))
                 {
-                    aErrorText.Text = "Error: Intro File must be in mp4 format";
+                    aErrorText.Text = "Error: Outro File must be in mp4 format";
                     aAddOutro.Checked = false;
                 }
             }
