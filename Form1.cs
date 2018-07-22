@@ -90,6 +90,32 @@ namespace TwitchVideoGenerator
                     set.ConcatAudioStream = true;
                     set.SetVideoFrameSize(Convert.ToInt32(aXResolution.Text), Convert.ToInt32(aYResolution.Text));
 
+                    var videosDuplicate = videos;
+                    if (aAddIntro.Checked)
+                    {
+                        var temp = new string[videos.Length + 1];
+                        temp[0] = openFileDialog1.FileName;
+                        for (int i = 0; i < videos.Length; i++)
+                        {
+                            temp[i + 1] = videos[i];
+                        }
+
+                        videos = temp;
+                    }
+
+                    if (aAddOutro.Checked)
+                    {
+                        var temp = new string[videos.Length + 1];
+                        temp[videos.Length] = openFileDialog2.FileName;
+                        for (int i = 0; i < videos.Length; i++)
+                        {
+                            temp[i] = videos[i];
+                        }
+
+                        videos = temp;
+                    }
+
+
                     try
                     {
                         ffMpeg.ConcatMedia(videos, outputLocation, Format.mp4, set);
@@ -97,13 +123,22 @@ namespace TwitchVideoGenerator
                     catch (Exception)
                     {
                         aProgressBar.Visible = false;
-                        aErrorText.Text = "Error: Invalid Resolution or Invalid Twitch Clip URLs";
+                        if (aAddIntro.Checked)
+                        {
+                            aErrorText.Text = "Error: Invalid Resolution or Invalid Twitch Clip URLs or Invalid Intro Resolution";
+                        }
+                        else
+                        {
+                            aErrorText.Text = "Error: Invalid Resolution or Invalid Twitch Clip URLs";
+                        }
+
                         return;
                     }
 
                     if (aDeleteClipsAfterwards.Visible && aDeleteClipsAfterwards.Checked)
                     {
-                        foreach (var videoPath in videos) 
+                        var listToUse = aAddIntro.Checked || aAddOutro.Checked ? videosDuplicate : videos;
+                        foreach (var videoPath in listToUse) 
                         {
                             if (File.Exists(videoPath)) 
                             {
@@ -141,11 +176,49 @@ namespace TwitchVideoGenerator
             aByLabel.Visible = show;
             aXResolution.Visible = show;
             aYResolution.Visible = show;
+            aAddIntro.Visible = show;
+            aAddOutro.Visible = show;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://www.youtube.com/watch?v=u03eNwpH6uA&feature=youtu.be");
+        }
+
+        private void aAddIntro_CheckedChanged(object sender, EventArgs e)
+        {
+            if (aAddIntro.Checked)
+            {
+                var result = openFileDialog1.ShowDialog();
+                if (result == DialogResult.Cancel)
+                {
+                    aAddIntro.Checked = false;
+                }
+
+                if (!openFileDialog1.FileName.EndsWith(".mp4"))
+                {
+                    aErrorText.Text = "Error: Intro File must be in mp4 format";
+                    aAddIntro.Checked = false;
+                }
+            }
+        }
+
+        private void aAddOutro_CheckedChanged(object sender, EventArgs e)
+        {
+            if (aAddOutro.Checked)
+            {
+                var result = openFileDialog2.ShowDialog();
+                if (result == DialogResult.Cancel)
+                {
+                    aAddOutro.Checked = false;
+                }
+
+                if (!openFileDialog2.FileName.EndsWith(".mp4"))
+                {
+                    aErrorText.Text = "Error: Intro File must be in mp4 format";
+                    aAddOutro.Checked = false;
+                }
+            }
         }
     }
 }

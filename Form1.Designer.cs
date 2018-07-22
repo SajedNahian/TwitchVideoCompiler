@@ -44,6 +44,10 @@
             this.aSaveAsLabel = new System.Windows.Forms.Label();
             this.aMP4 = new System.Windows.Forms.Label();
             this.aErrorText = new System.Windows.Forms.Label();
+            this.aAddIntro = new System.Windows.Forms.CheckBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.aAddOutro = new System.Windows.Forms.CheckBox();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // aVideoURLs
@@ -196,11 +200,45 @@
             this.aErrorText.Size = new System.Drawing.Size(0, 13);
             this.aErrorText.TabIndex = 14;
             // 
+            // aAddIntro
+            // 
+            this.aAddIntro.AutoSize = true;
+            this.aAddIntro.Location = new System.Drawing.Point(379, 196);
+            this.aAddIntro.Name = "aAddIntro";
+            this.aAddIntro.Size = new System.Drawing.Size(69, 17);
+            this.aAddIntro.TabIndex = 15;
+            this.aAddIntro.Text = "Add Intro";
+            this.aAddIntro.UseVisualStyleBackColor = true;
+            this.aAddIntro.Visible = false;
+            this.aAddIntro.CheckedChanged += new System.EventHandler(this.aAddIntro_CheckedChanged);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // aAddOutro
+            // 
+            this.aAddOutro.AutoSize = true;
+            this.aAddOutro.Location = new System.Drawing.Point(379, 219);
+            this.aAddOutro.Name = "aAddOutro";
+            this.aAddOutro.Size = new System.Drawing.Size(74, 17);
+            this.aAddOutro.TabIndex = 16;
+            this.aAddOutro.Text = "Add Outro";
+            this.aAddOutro.UseVisualStyleBackColor = true;
+            this.aAddOutro.Visible = false;
+            this.aAddOutro.CheckedChanged += new System.EventHandler(this.aAddOutro_CheckedChanged);
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "openFileDialog2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 322);
+            this.ClientSize = new System.Drawing.Size(591, 322);
+            this.Controls.Add(this.aAddOutro);
+            this.Controls.Add(this.aAddIntro);
             this.Controls.Add(this.aErrorText);
             this.Controls.Add(this.aMP4);
             this.Controls.Add(this.aSaveAsLabel);
@@ -243,6 +281,10 @@
         private System.Windows.Forms.Label aSaveAsLabel;
         private System.Windows.Forms.Label aMP4;
         private System.Windows.Forms.Label aErrorText;
+        private System.Windows.Forms.CheckBox aAddIntro;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.CheckBox aAddOutro;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
     }
 }
 
